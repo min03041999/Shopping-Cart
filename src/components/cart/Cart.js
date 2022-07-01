@@ -54,19 +54,7 @@ const Cart = () => {
                 </div>
               </div>
             </div>
-            {/* <div className="panel-body">
-              <Item />
-              <Item />
-            </div>
-            <div className="panel-footer">
-              <div className="row text-center">
-                <div className="col-xs-11">
-                  <h4 className="text-right">
-                    Total <strong>$5400.8</strong>
-                  </h4>
-                </div>
-              </div>
-            </div> */}
+            {/* Cart Item  */}
             {cart}
           </div>
         </div>

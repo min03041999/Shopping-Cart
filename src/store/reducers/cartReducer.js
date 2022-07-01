@@ -1,11 +1,13 @@
 const initialState = {
-  cart: [],
+  // cart: [],
+  cart: JSON.parse(localStorage.getItem("cart") || "[]"),
 };
 const cartReducer = (state = initialState, action) => {
   let cart = state.cart;
   switch (action.type) {
     case "ADD_TO_CART":
       cart.push(action.payload);
+      localStorage.setItem("cart", JSON.stringify(cart));
       return {
         ...state,
         cart: cart,
@@ -19,16 +21,19 @@ const cartReducer = (state = initialState, action) => {
       );
       item.quantity = action.payload.quantity;
       newCart.push(item);
+      localStorage.setItem("cart", JSON.stringify(newCart));
       return {
         ...state,
         cart: newCart,
       };
     case "REMOVE_FROM_CART":
+      let deleteCart = cart.filter(
+        (item) => item.product.id !== action.payload.productId
+      );
+      localStorage.setItem("cart", JSON.stringify(deleteCart));
       return {
         ...state,
-        cart: cart.filter(
-          (item) => item.product.id !== action.payload.productId
-        ),
+        cart: deleteCart,
       };
     default:
       return state;
